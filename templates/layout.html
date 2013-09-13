@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+  <title> Camilla's world </title>
+  <link rel="icon" href="{{ url_for('static', filename='icon.png') }}" />
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<div id='cssmenu'>
+    <ul>
+     <li class='active'><a href='index.html'><span>Home</span></a></li>
+     <li><a href='#'><span>Products</span></a></li>
+     <li><a href='#'><span>About</span></a></li>
+     <li class='last'><a href='#'><span>Contatti</span></a></li>
+    </ul>
+</div>
+
+<div class=page>
+ 
+  <h1> <a href="/"> Il mondo di Camilla </a> </h1>
+  
+  <div class=metanav>
+  {% if not session.logged_in %}
+    <a href="{{ url_for('login') }}">log in</a>
+  {% else %}
+    <a href="{{ url_for('logout') }}">log out</a>
+  {% endif %}
+  </div>
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+  {% block body %}{% endblock %}
+</div>
+
+
