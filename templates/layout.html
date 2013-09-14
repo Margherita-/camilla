@@ -19,9 +19,9 @@
   <h1> <a href="/"> Il mondo di Camilla </a> </h1>
   
   <div class=metanav>
-  {% if not session.logged_in %}
+  {% if session.logged_in %} {# add "not" after "if" if you want the login and-->
     <a href="{{ url_for('login') }}">log in</a>
-  {% else %}
+  {% else %} #}
     <a href="{{ url_for('logout') }}">log out</a>
   {% endif %}
   </div>

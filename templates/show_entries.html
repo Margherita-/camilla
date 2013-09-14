@@ -4,18 +4,34 @@
   {% if session.logged_in %}
     <form action="{{ url_for('add_entry') }}" method="post" class="add-entry">
       <dl>
-        <dt>Title:
-        <dd><input type="text" size="30" name="title">
-        <dt>Text:
-        <dd><textarea name="contenuto" rows="5" cols="40"></textarea>
-        <dd><input type="submit" value="Share">
+        <dt>Author:</dt>
+        <dd>
+          <select name="autore">
+          {% for author in authors %}
+            <option value="{{ author.id }}">{{ author.name }}</option>
+          {% endfor %}
+          </select>
+        </dd>
+        <dt>Avatar:</dt>
+        <dd>
+          <div>
+          {% for avatar in avatars %}
+            <label><input type="radio" name="avatar" value="{{ avatar.id }}"><img src="/static/{{ avatar.path }}"/></label>
+          {% endfor %}
+          </div>
+        </dd>
+        <dt>Title:</dt>
+        <dd><input type="text" size="30" name="titolo"></dd>
+        <dt>Text:</dt>
+        <dd><textarea name="contenuto" rows="5" cols="40"></textarea></dd>
       </dl>
+      <input type="submit" value="Share"/>
     </form>
   {% endif %}
   <ul class="entries">
   {% for entry in entries %}
     <li class='post'>
-      <div class='author'><h2>{{ entry.autor }}</h2><img src="/static/mano.jpg" /></div>
+      <div class='author'><h2>{{ entry.autor }}</h2><img src="/static/{{ entry.avatar }}" /></div>
       <div class='contenuto'><h2>{{ entry.title }}</h2><p>{{ entry.text|safe }}</p></div>
     </li>
   {% else %}

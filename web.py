@@ -3,6 +3,7 @@
 
 # all the imports
 from __future__ import with_statement
+import os, sys
 from contextlib import closing
 import MySQLdb
 from flask import Flask, request, session, g, redirect, url_for, \
@@ -10,11 +11,12 @@ from flask import Flask, request, session, g, redirect, url_for, \
 
 # create our little application :)
 app = Flask(__name__)
-app.config.from_pyfile('config.py', silent=False)
 
+app.config.from_pyfile('config.py', silent=False)
 app.config.from_pyfile('DB_access.py', silent=False)
 
-print app.config["HOST"]
+if not os.path.exists("static/uploads/avatar"):
+    os.mkdir("static/uploads/avatar")
 
 db = MySQLdb.connect(
     host = app.config["HOST"], # your host, usually localhost
@@ -28,10 +30,19 @@ db = MySQLdb.connect(
 # mostra post
 @app.route('/')
 def show_entries():
-    cur = db.cursor() 
-    cur.execute("SELECT * FROM articoli")  
-    entries = [dict(autor=row[1], title=row[3], text=row[4]) for row in cur.fetchall()]
-    return render_template('show_entries.html', entries=entries)
+    cur = db.cursor()
+    
+    cur.execute("""SELECT autore_id, path_su_disco, titolo, contenuto
+                FROM articoli as ar LEFT JOIN avatar as av on ar.avatar_id=av.id ORDER BY data DESC""")  
+    entries = [dict(autor=row[0], avatar=row[1], title=row[2], text=row[3]) for row in cur.fetchall()]
+    
+    cur.execute("SELECT id, nome FROM autori ORDER BY nome ASC")     
+    authors = [dict(id=row[0], name=row[1]) for row in cur.fetchall()]
+    
+    cur.execute("SELECT id, path_su_disco FROM avatar ORDER BY id")     
+    avatars = [dict(id=row[0], path=row[1]) for row in cur.fetchall()]
+
+    return render_template('show_entries.html', entries=entries, authors=authors, avatars=avatars)
 
 # aggiungi post
 @app.route('/add', methods=['POST'])
@@ -39,14 +50,14 @@ def add_entry():
     if not session.get('logged_in'):
         abort(401)
     cur = db.cursor()
-    cur.execute('INSERT INTO articoli (titolo, contenuto, data) values (%s, %s, now())',
-                 (request.form['title'], request.form['contenuto']))
+    cur.execute('INSERT INTO articoli (autore_id, avatar_id, titolo, contenuto, data) values (%s, %s, %s, %s, now())',
+                 (request.form['autore'], request.form['avatar'], request.form['titolo'], request.form['contenuto']))
     db.commit()
     flash('New entry was successfully posted')
     return redirect(url_for('show_entries'))
 
 # fai il login
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/commander', methods=['GET', 'POST'])
 def login():
     error = None
     if request.method == 'POST':
