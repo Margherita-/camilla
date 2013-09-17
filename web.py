@@ -42,7 +42,7 @@ def show_entries():
     cur.execute("SELECT id, path_su_disco FROM avatar ORDER BY id")     
     avatars = [dict(id=row[0], path=row[1]) for row in cur.fetchall()]
 
-    return render_template('show_entries.html', entries=entries, authors=authors, avatars=avatars)
+    return render_template('show_entries.html', entries=entries, authors=authors, avatars=avatars, fuoco="Home")
 
 # aggiungi post
 @app.route('/add', methods=['POST'])
@@ -82,21 +82,21 @@ def show_foto():
     cur = db.cursor() 
     cur.execute("SELECT * FROM articoli")  
     entries = [dict(title=row[4], text=row[5]) for row in cur.fetchall()]
-    return render_template('foto.html', entries=entries)
+    return render_template('foto.html', entries=entries, fuoco="Foto")
     
 @app.route('/about')
 def show_about():
     cur = db.cursor() 
     cur.execute("SELECT * FROM articoli")  
     entries = [dict(title=row[4], text=row[5]) for row in cur.fetchall()]
-    return render_template('about.html', entries=entries)    
+    return render_template('about.html', entries=entries, fuoco="About")    
 
 @app.route('/contatti')
 def show_contatti():
     cur = db.cursor() 
     cur.execute("SELECT * FROM articoli")  
     entries = [dict(title=row[4], text=row[5]) for row in cur.fetchall()]
-    return render_template('contatti.html', entries=entries)
+    return render_template('contatti.html', entries=entries, fuoco="Contatti")
 
 
 if __name__ == '__main__':
