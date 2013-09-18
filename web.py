@@ -32,8 +32,9 @@ db = MySQLdb.connect(
 def show_entries():
     cur = db.cursor()
     
-    cur.execute("""SELECT autore_id, path_su_disco, titolo, contenuto
-                FROM articoli as ar LEFT JOIN avatar as av on ar.avatar_id=av.id ORDER BY data DESC""")  
+    cur.execute("""SELECT au.nome, path_su_disco, titolo, contenuto
+                FROM autori as au JOIN articoli as ar on au.id=ar.autore_id
+                LEFT JOIN avatar as av on ar.avatar_id=av.id ORDER BY data DESC""")  
     entries = [dict(autor=row[0], avatar=row[1], title=row[2], text=row[3]) for row in cur.fetchall()]
     
     cur.execute("SELECT id, nome FROM autori ORDER BY nome ASC")     
@@ -42,7 +43,6 @@ def show_entries():
     cur.execute("SELECT id, path_su_disco FROM avatar ORDER BY id")     
     avatars = [dict(id=row[0], path=row[1]) for row in cur.fetchall()]
     
-    print avatars
     return render_template('show_entries.html', entries=entries, authors=authors, avatars=avatars, fuoco="Home")
 
 # aggiungi post
