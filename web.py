@@ -34,7 +34,7 @@ def show_entries():
     
     cur.execute("""SELECT au.nome, path_su_disco, titolo, contenuto
                 FROM autori as au JOIN articoli as ar on au.id=ar.autore_id
-                LEFT JOIN avatar as av on ar.avatar_id=av.id ORDER BY data DESC""")  
+                LEFT JOIN avatar as av on ar.avatar_id=av.id WHERE ar.id>6 ORDER BY data DESC""")  
     entries = [dict(autor=row[0], avatar=row[1], title=row[2], text=row[3]) for row in cur.fetchall()]
     
     cur.execute("SELECT id, nome FROM autori ORDER BY nome ASC")     
@@ -88,9 +88,14 @@ def show_foto():
 @app.route('/about')
 def show_about():
     cur = db.cursor() 
-    cur.execute("SELECT * FROM articoli")  
-    entries = [dict(title=row[4], text=row[5]) for row in cur.fetchall()]
-    return render_template('about.html', entries=entries, fuoco="About")    
+   
+    cur.execute("""SELECT au.nome, path_su_disco, contenuto
+                FROM autori as au JOIN articoli as ar on au.id=ar.autore_id
+                LEFT JOIN avatar as av on ar.avatar_id=av.id WHERE ar.id BETWEEN 3 AND 6 ORDER BY data DESC""")  
+    abouts = [dict(autor=row[0], avatar=row[1], text=row[2]) for row in cur.fetchall()]
+    
+    print abouts
+    return render_template('about.html', abouts=abouts, fuoco="About")
 
 @app.route('/contatti')
 def show_contatti():

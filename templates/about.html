@@ -1,11 +1,17 @@
 {% extends "layout.html" %}
 
 {% block body %}
+
+  <h2>I protagonisti</h2>
     <ul class="entries">
-  {% for entry in entries %}
-    <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
-  {% else %}
-    <li><em>Unbelievable.  No entries here so far</em>
-  {% endfor %}
+      {% for about in abouts %}
+        <li class='post'>
+          <div class='author'><h2>{{ about.autor }}</h2><img src="/static/{{ about.avatar }}" /></div>
+          <div class='contenuto'><p>{{ about.text|safe }}</p></div>
+        </li>
+      {% else %}
+        <li><em>Unbelievable.  No entries here so far</em>
+      {% endfor %}
     </ul>
+
 {% endblock %}
