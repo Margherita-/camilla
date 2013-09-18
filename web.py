@@ -41,7 +41,8 @@ def show_entries():
     
     cur.execute("SELECT id, path_su_disco FROM avatar ORDER BY id")     
     avatars = [dict(id=row[0], path=row[1]) for row in cur.fetchall()]
-
+    
+    print avatars
     return render_template('show_entries.html', entries=entries, authors=authors, avatars=avatars, fuoco="Home")
 
 # aggiungi post
