@@ -9,8 +9,10 @@ h1, h2          { font-family: 'Georgia', serif; }
 h1              { text-align: center; border-bottom: 2px solid #eee; }
 h2              { font-size: 1.2em; }
 
+
+.contenitore    { margin: 0; padding: 0; border: 0; background-image: url(zampe.png); background-repeat: repeat-x;}
 .page           { margin: 2em auto; margin-top: 0px;
-                  border: 5px solid #915D29;
+                  border: 5px solid #8A8A8A;
                   padding: 0.8em; background: white;
                   width: 80%; max-width: 800px; min-width: 300px; }
 .entries        { list-style: none; margin: 0; padding: 0; }
@@ -57,7 +59,7 @@ h2              { font-size: 1.2em; }
 #cssmenu > ul:after {  clear: both; }
 #cssmenu {  zoom: 1;
             height: 69px;
-            background: url(bottom-bg.png) repeat-x center bottom;
+            background: url(gray_bottom-bg.png) repeat-x center bottom;
             border-radius: 2px;
             width: auto;    }
 #cssmenu ul {  background: url(nav-bg.png) repeat-x 0px 4px;
@@ -80,7 +82,7 @@ h2              { font-size: 1.2em; }
 
 #cssmenu ul li:first-child a {   margin: 4px 2px 0 0;   }
 #cssmenu ul li a:hover,
-#cssmenu ul li.active a {   background: url(color.png) center bottom;
+#cssmenu ul li.active a {   background: url(gray_color.png) center bottom;
                             display: block;
                             height: 37px;
                             margin-top: 0px;

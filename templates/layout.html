@@ -5,6 +5,7 @@
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 </head>
 
+<<<<<<< Updated upstream
 <div id='menu_container'>
   <div id='cssmenu'>
       <ul>
@@ -16,21 +17,22 @@
   </div>
 </div>
 
-<div class=page>
- 
-  <h1> <a href="/"> Il mondo di Camilla </a> </h1>
-  
-  <div class=metanav>
-  {% if session.logged_in %} {# add "not" after "if" if you want the login and-->
-    <a href="{{ url_for('login') }}">log in</a>
-  {% else %} #}
-    <a href="{{ url_for('logout') }}">log out</a>
-  {% endif %}
+<div class=contenitore>
+  <div class=page>
+   
+    <h1> <a href="/"> Il mondo di Camilla </a> </h1>
+    
+    <div class=metanav>
+    {% if session.logged_in %} {# add "not" after "if" if you want the login and-->
+      <a href="{{ url_for('login') }}">log in</a>
+    {% else %} #}
+      <a href="{{ url_for('logout') }}">log out</a>
+    {% endif %}
+    </div>
+    {% for message in get_flashed_messages() %}
+      <div class=flash>{{ message }}</div>
+    {% endfor %}
+    {% block body %}{% endblock %}
   </div>
-  {% for message in get_flashed_messages() %}
-    <div class=flash>{{ message }}</div>
-  {% endfor %}
-  {% block body %}{% endblock %}
 </div>
-
 
