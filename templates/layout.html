@@ -11,8 +11,11 @@
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 </head>
 
-<div id='menu_container'>
-  <div id='cssmenu'>
+
+<div class=contenitore>
+  <div class=page>
+    
+    <div id='cssmenu'>
       <ul>
        <li {% if fuoco=="Home" %} class='active' {% endif %} ><a href="{{ url_for('show_entries') }}"><span>Home</span></a></li>
        <li {% if fuoco=="Foto" %} class='active' {% endif %} ><a href="{{ url_for('show_foto') }}"><span>Foto</span></a></li>
@@ -20,10 +23,6 @@
        <li class='last {% if fuoco=="Contatti" %} active {% endif %}'><a href="{{ url_for('show_contatti') }}"><span>Contatti</span></a></li>
       </ul>
   </div>
-</div>
-
-<div class=contenitore>
-  <div class=page>
    
     <h1> <a href="/"> Il mondo di Camilla </a> </h1>
     
