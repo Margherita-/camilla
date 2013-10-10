@@ -115,4 +115,4 @@ if __name__ == '__main__':
         print "verbosity turned on"
     
     app.debug = args.debug
-    app.run(host='0.0.0.0')
+    app.run(host='localhost',port=5800)
