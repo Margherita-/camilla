@@ -89,9 +89,8 @@ def show_foto():
 def show_about():
     cur = db.cursor() 
    
-    cur.execute("""SELECT au.nome, path_su_disco, contenuto
-                FROM autori as au JOIN articoli as ar on au.id=ar.autore_id
-                LEFT JOIN avatar as av on ar.avatar_id=av.id WHERE ar.id BETWEEN 3 AND 6 ORDER BY data DESC""")  
+    cur.execute("""SELECT au.nome, av.path_su_disco, au.descrizione
+                FROM autori AS au LEFT JOIN avatar AS av ON au.avatar_id = av.id""")  
     abouts = [dict(autor=row[0], avatar=row[1], text=row[2]) for row in cur.fetchall()]
     
     print abouts
