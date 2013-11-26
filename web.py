@@ -34,7 +34,7 @@ def show_entries():
     
     cur.execute("""SELECT au.nome, path_su_disco, titolo, contenuto
                 FROM autori as au JOIN articoli as ar on au.id=ar.autore_id
-                LEFT JOIN avatar as av on ar.avatar_id=av.id WHERE ar.id>6 ORDER BY data DESC""")  
+                LEFT JOIN avatar as av on ar.avatar_id=av.id ORDER BY data DESC""")  
     entries = [dict(autor=row[0], avatar=row[1], title=row[2], text=row[3]) for row in cur.fetchall()]
     
     cur.execute("SELECT id, nome FROM autori ORDER BY nome ASC")     
