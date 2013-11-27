@@ -1,0 +1,12 @@
+@import url(http://fonts.googleapis.com/css?family=Capriola);
+
+html            { background: url(404.JPG) no-repeat center center fixed; 
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover; }
+
+
+h1              { font-family: 'Capriola', 'Georgia', serif; text-align: center; color: white; font-size: 4em;}
+a             { text-decoration: none; }
+h2, a           { font-family: 'Capriola'; text-align: center; color: white; font-size: 2em; }
