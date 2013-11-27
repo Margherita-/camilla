@@ -15,8 +15,15 @@ app = Flask(__name__)
 app.config.from_pyfile('config.py', silent=False)
 app.config.from_pyfile('DB_access.py', silent=False)
 
-if not os.path.exists("static/uploads/avatar"):
-    os.mkdir("static/uploads/avatar")
+#trova dove si trova il file corrente
+basedir = os.path.dirname(__file__)
+
+#definisce la path di avatar: path corrente + path relativa
+avatar_dir = os.path.join(basedir, "static/uploads/avatar")
+
+#crea la cartella se non esiste e la crea e la mette nella cartella del file corrente
+if not os.path.exists(avatar_dir):
+    os.mkdir(avatar_dir)
 
 db = MySQLdb.connect(
     host = app.config["HOST"], # your host, usually localhost
