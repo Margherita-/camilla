@@ -110,10 +110,14 @@ def show_contatti():
     entries = [dict(title=row[4], text=row[5]) for row in cur.fetchall()]
     return render_template('contatti.html', entries=entries, fuoco="Contatti")
 
+#gestione errori
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
 
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template('500.html'), 500
 
 
 if __name__ == '__main__':
