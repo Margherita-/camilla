@@ -33,6 +33,7 @@
     <li class='post'>
       <div class='author'><h2>{{ entry.autor }}</h2><img src="/static/{{ entry.avatar }}" /></div>
       <div class='contenuto'><h2>{{ entry.title }}</h2><p>{{ entry.text|safe }}</p></div>
+      <div class='date'>{{ entry.date }}</div>
     </li>
   {% else %}
     <li><em>Unbelievable.  No entries here so far</em></li>

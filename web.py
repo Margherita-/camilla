@@ -39,10 +39,10 @@ db = MySQLdb.connect(
 def show_entries():
     cur = db.cursor()
     
-    cur.execute("""SELECT au.nome, path_su_disco, titolo, contenuto
+    cur.execute("""SELECT au.nome, path_su_disco, titolo, contenuto, DATE_FORMAT(DATE(data ),'%d %b %y') 
                 FROM autori as au JOIN articoli as ar on au.id=ar.autore_id
                 LEFT JOIN avatar as av on ar.avatar_id=av.id ORDER BY data DESC""")  
-    entries = [dict(autor=row[0], avatar=row[1], title=row[2], text=row[3]) for row in cur.fetchall()]
+    entries = [dict(autor=row[0], avatar=row[1], title=row[2], text=row[3], date=row[4]) for row in cur.fetchall()]
     
     cur.execute("SELECT id, nome FROM autori ORDER BY nome ASC")     
     authors = [dict(id=row[0], name=row[1]) for row in cur.fetchall()]

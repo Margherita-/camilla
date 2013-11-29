@@ -3,11 +3,11 @@
 body            { font-family: sans-serif;
                   background: #E5CCA6;
                   background-image:url("wood.png");
-                  /*margin-top: 0; */}
+                  margin: 8px 0; */}
 a, h1, h2       { color: #377BA8; }
 h1, h2          { font-family: 'Georgia', serif; }
 h1              { font-family: 'Capriola', 'Georgia', serif; text-align: center; padding-bottom: 0.8em;
-                border-bottom: 2px solid #eee; }
+                border-bottom: 2px solid #eee; font-size: 40px; }
 h1 a            { text-decoration: none; }
 h2              { font-size: 1.2em; }
 
@@ -18,7 +18,7 @@ h2              { font-size: 1.2em; }
                   padding: 0.8em; background: white;
                   width: 80%; max-width: 800px; min-width: 300px; }
 .entries        { list-style: none; margin: 0; padding: 0; }
-.entries li     { margin: 0.8em 1.2em; }
+.entries li     { margin: 4em 1.2em; }
 .entries h2     { font-family: sans-serif; margin-top: 50px; }
 .add-entry      { font-size: 0.9em; border-bottom: 1px solid #ccc; }
 .add-entry dl   { font-weight: bold; }
@@ -30,6 +30,7 @@ h2              { font-size: 1.2em; }
 
 .author         { float: left; width: 100px; }
 .contenuto      { margin-left: 120px; }
+.date           { text-align: right; font-size: small; font-family: 'Capriola', serif; }
 
 
 .post           { min-height: 154px; }
