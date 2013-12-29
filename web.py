@@ -8,12 +8,14 @@ from contextlib import closing
 import MySQLdb
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
+from get_photo import give_me_photos, save_photos
 
 # create our little application :)
 app = Flask(__name__)
 
 app.config.from_pyfile('config.py', silent=False)
 app.config.from_pyfile('DB_access.py', silent=False)
+app.config.from_pyfile('Flickr_config.py', silent=False)
 
 #trova dove si trova il file corrente
 basedir = os.path.dirname(__file__)
@@ -31,6 +33,8 @@ db = MySQLdb.connect(
     passwd = app.config["PASSWORD"], # your password
     db = app.config["DB"],
     use_unicode = True) # name of the data base
+
+albums, photos = give_me_photos()
 
 
 #main 
