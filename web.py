@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 app.config.from_pyfile('config.py', silent=False)
 app.config.from_pyfile('DB_access.py', silent=False)
-app.config.from_pyfile('Flickr_config.py', silent=False)
+app.config.from_pyfile('flickr_keys.py', silent=False)
 
 #trova dove si trova il file corrente
 basedir = os.path.dirname(__file__)

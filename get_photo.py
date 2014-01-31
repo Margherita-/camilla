@@ -1,5 +1,6 @@
 import flickr_api
 import pickle
+import os
 
 # returns the urls of all photos in an album
 def get_photos_url(photos):
