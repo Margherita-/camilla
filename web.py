@@ -8,7 +8,7 @@ from contextlib import closing
 import MySQLdb
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
-from get_photo import give_me_photos, save_photos
+from lib.get_photo import give_me_photos, save_photos
 
 # create our little application :)
 app = Flask(__name__)
