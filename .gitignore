@@ -1,5 +1,6 @@
 
 DB_access.py
 config.py
+flickr_keys.py
 
 static/uploads
